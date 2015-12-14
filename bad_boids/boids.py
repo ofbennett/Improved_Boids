@@ -6,6 +6,7 @@ for use as an exercise on refactoring.
 from matplotlib import pyplot as plt
 from matplotlib import animation
 import random
+import numpy as np
 
 # Deliberately terrible code for teaching purposes
 
@@ -20,6 +21,14 @@ boids_y=[random.uniform(300.0,600.0) for x in range(boid_num)]
 boid_x_velocities=[random.uniform(0,10.0) for x in range(boid_num)]
 boid_y_velocities=[random.uniform(-20.0,20.0) for x in range(boid_num)]
 boids=(boids_x,boids_y,boid_x_velocities,boid_y_velocities)
+
+class Boid(object):
+	def __init__(self,x,y,vx,vy):
+		self.position = np.array([x,y])
+		self.velocity = np.array([vx,vy])
+
+	def react(self,other):
+		pass
 
 def update_boids(boids):
 	xs,ys,xvs,yvs=boids
