@@ -31,13 +31,15 @@ class Boid(object):
 		self.velocity += (other.position - self.position)*middle_attraction/boid_num
 
 	def flyAway(self,other):
-		pass
+		if np.linalg.norm(other.position - self.position) < avoidance_radius:
+			self.velocity += (self.position - other.position)
 
 	def copy(self,other):
-		pass
+		if np.linalg.norm(other.position - self.position) < copycat_radius:
+			self.velocity += (other.velocity - self.velocity)*copycat_influence/boid_num
 
 	def move(self):
-		pass
+		self.position += self.velocity
 
 def update_boids(boids):
 	xs,ys,xvs,yvs=boids
