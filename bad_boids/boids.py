@@ -22,6 +22,8 @@ boid_x_velocities=[random.uniform(0,10.0) for x in range(boid_num)]
 boid_y_velocities=[random.uniform(-20.0,20.0) for x in range(boid_num)]
 boids=(boids_x,boids_y,boid_x_velocities,boid_y_velocities)
 
+boids
+
 class Boid(object):
 	def __init__(self,x,y,vx,vy):
 		self.position = np.array([x,y])
@@ -40,6 +42,10 @@ class Boid(object):
 
 	def move(self):
 		self.position += self.velocity
+
+class Swarm(object):
+	def __init__(self):
+		self.members = []
 
 def update_boids(boids):
 	xs,ys,xvs,yvs=boids
