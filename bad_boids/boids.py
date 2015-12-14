@@ -27,7 +27,16 @@ class Boid(object):
 		self.position = np.array([x,y])
 		self.velocity = np.array([vx,vy])
 
-	def react(self,other):
+	def flyTowards(self,other):
+		self.velocity += (other.position - self.position)*middle_attraction/boid_num
+
+	def flyAway(self,other):
+		pass
+
+	def copy(self,other):
+		pass
+
+	def move(self):
 		pass
 
 def update_boids(boids):
