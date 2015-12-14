@@ -47,6 +47,20 @@ class Swarm(object):
 	def __init__(self):
 		self.members = []
 
+	def hatch(self,number):
+		self.members = [Boid(random.uniform(-450,50.0),
+							 random.uniform(300.0,600.0),
+							 random.uniform(0,10.0),
+							 random.uniform(-20.0,20.0)) for x in range(number)]
+
+	def update(self):
+		for this in self.members:
+			for that in self.members:
+				this.flyTowards(that)
+				this.flyAway(that)
+				this.copy(that)
+				this.move()
+
 def update_boids(boids):
 	xs,ys,xvs,yvs=boids
 	# Fly towards the middle
