@@ -9,6 +9,8 @@ import random
 
 # Deliberately terrible code for teaching purposes
 
+middle_attraction = 0.01
+
 boids_x=[random.uniform(-450,50.0) for x in range(50)]
 boids_y=[random.uniform(300.0,600.0) for x in range(50)]
 boid_x_velocities=[random.uniform(0,10.0) for x in range(50)]
@@ -20,10 +22,10 @@ def update_boids(boids):
 	# Fly towards the middle
 	for i in range(len(xs)):
 		for j in range(len(xs)):
-			xvs[i]=xvs[i]+(xs[j]-xs[i])*0.01/len(xs)
+			xvs[i]=xvs[i]+(xs[j]-xs[i])*middle_attraction/len(xs)
 	for i in range(len(xs)):
 		for j in range(len(xs)):
-			yvs[i]=yvs[i]+(ys[j]-ys[i])*0.01/len(xs)
+			yvs[i]=yvs[i]+(ys[j]-ys[i])*middle_attraction/len(xs)
 	# Fly away from nearby boids
 	for i in range(len(xs)):
 		for j in range(len(xs)):
