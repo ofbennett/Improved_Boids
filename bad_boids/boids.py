@@ -12,6 +12,7 @@ import random
 middle_attraction = 0.01
 avoidance_radius = 10
 copycat_radius = 100
+copycat_influence = 0.125
 
 boids_x=[random.uniform(-450,50.0) for x in range(50)]
 boids_y=[random.uniform(300.0,600.0) for x in range(50)]
@@ -38,8 +39,8 @@ def update_boids(boids):
 	for i in range(len(xs)):
 		for j in range(len(xs)):
 			if (xs[j]-xs[i])**2 + (ys[j]-ys[i])**2 < copycat_radius**2:
-				xvs[i]=xvs[i]+(xvs[j]-xvs[i])*0.125/len(xs)
-				yvs[i]=yvs[i]+(yvs[j]-yvs[i])*0.125/len(xs)
+				xvs[i]=xvs[i]+(xvs[j]-xvs[i])*copycat_influence/len(xs)
+				yvs[i]=yvs[i]+(yvs[j]-yvs[i])*copycat_influence/len(xs)
 	# Move according to velocities
 	for i in range(len(xs)):
 		xs[i]=xs[i]+xvs[i]
