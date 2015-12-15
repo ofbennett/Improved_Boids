@@ -1,12 +1,13 @@
 from boids import Swarm
 from matplotlib import pyplot as plt
 from matplotlib import animation
+import os
+import yaml
 
-boid_num = 50
-behaviour = {'middle_attraction' : 0.01,
-             'avoidance_radius' : 10.0,
-             'copycat_radius' : 100.0,
-             'copycat_influence' : 0.125}
+swarm_info=yaml.load(open(os.path.join(os.path.dirname(__file__),'config','config.yml')))
+
+boid_num = swarm_info['boid_num']
+behaviour = swarm_info
 
 swarm = Swarm()
 swarm.hatch(boid_num,behaviour)
