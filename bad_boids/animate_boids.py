@@ -1,4 +1,4 @@
-from boids import Swarm
+from boid_classes import Swarm
 from matplotlib import pyplot as plt
 from matplotlib import animation
 import os
