@@ -3,6 +3,12 @@ from nose.tools import assert_almost_equal, assert_equal, assert_less, assert_gr
 import os
 import yaml
 
+middle_attraction = 0.01
+avoidance_radius = 10.0
+copycat_radius = 100.0
+copycat_influence = 0.125
+boid_num = 50
+
 def test_OO_boids_regression():
     regression_data=yaml.load(open(os.path.join(os.path.dirname(__file__),'fixtures','fixture.yml')))
     boid_data=regression_data["before"]
@@ -30,12 +36,6 @@ def test_OO_boids_regression():
 
     for test_vy_val,true_vy_val in zip(test_vy,true_vy):
         assert_almost_equal(test_vy_val,true_vy_val,delta=0.01)
-
-middle_attraction = 0.01
-avoidance_radius = 10.0
-copycat_radius = 100.0
-copycat_influence = 0.125
-boid_num = 50
 
 def test_Boid_initialisation():
     boid = Boid(1,2,3,4)
