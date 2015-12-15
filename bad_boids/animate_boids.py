@@ -4,26 +4,27 @@ from matplotlib import animation
 import os
 import yaml
 
-swarm_info=yaml.load(open(os.path.join(os.path.dirname(__file__),'config','config.yml')))
+def process():
+    swarm_info=yaml.load(open(os.path.join(os.path.dirname(__file__),'config','config.yml')))
 
-boid_num = swarm_info['boid_num']
-behaviour = swarm_info
+    boid_num = swarm_info['boid_num']
+    behaviour = swarm_info
 
-swarm = Swarm()
-swarm.hatch(boid_num,behaviour)
-boid_xs,boid_ys = swarm.boidPositions()
+    swarm = Swarm()
+    swarm.hatch(boid_num,behaviour)
+    boid_xs,boid_ys = swarm.boidPositions()
 
-figure=plt.figure()
-axes=plt.axes(xlim=(-500,1500), ylim=(-500,1500))
-scatter=axes.scatter(boid_xs,boid_ys)
+    figure=plt.figure()
+    axes=plt.axes(xlim=(-500,1500), ylim=(-500,1500))
+    scatter=axes.scatter(boid_xs,boid_ys)
 
-def animate(frame):
-	swarm.update()
-	xs,ys = swarm.boidPositions()
-	scatter.set_offsets(zip(xs,ys))
+    def animate(frame):
+    	swarm.update()
+    	xs,ys = swarm.boidPositions()
+    	scatter.set_offsets(zip(xs,ys))
 
-anim = animation.FuncAnimation(figure, animate,
-                               frames=50, interval=50)
+    anim = animation.FuncAnimation(figure, animate,frames=50, interval=50)
+    plt.show()
 
 if __name__ == "__main__":
-    plt.show()
+    process()
