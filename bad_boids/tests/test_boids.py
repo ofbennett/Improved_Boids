@@ -3,16 +3,13 @@ from nose.tools import assert_almost_equal, assert_equal, assert_less, assert_gr
 import os
 import yaml
 
-behaviour = {'middle_attraction' : 0.01,
-             'avoidance_radius' : 10.0,
-             'copycat_radius' : 100.0,
-             'copycat_influence' : 0.125}
+behaviour=yaml.load(open(os.path.join(os.path.dirname(__file__),'fixtures','standard_swarm.yml')))
 
 middle_attraction = behaviour['middle_attraction']
 avoidance_radius = behaviour['avoidance_radius']
 copycat_radius = behaviour['copycat_radius']
 copycat_influence = behaviour['copycat_influence']
-boid_num = 50
+boid_num = behaviour['boid_num']
 
 def test_OO_boids_regression():
     regression_data=yaml.load(open(os.path.join(os.path.dirname(__file__),'fixtures','fixture.yml')))
