@@ -38,15 +38,15 @@ def test_OO_boids_regression():
         assert_almost_equal(test_vy_val,true_vy_val,delta=0.01)
 
 def test_Boid_initialisation():
-    boid = Boid(1,2,3,4)
+    boid = Boid(1,2,3,4,boid_num)
     assert_equal(boid.position[0],1)
     assert_equal(boid.position[1],2)
     assert_equal(boid.velocity[0],3)
     assert_equal(boid.velocity[1],4)
 
 def test_Boid_flyTowards():
-    this_boid = Boid(0.0,0.0,1.0,1.0)
-    that_boid = Boid(10.0,0.0,1.0,1.0)
+    this_boid = Boid(0.0,0.0,1.0,1.0,boid_num)
+    that_boid = Boid(10.0,0.0,1.0,1.0,boid_num)
     this_boid.flyTowards(that_boid)
 
     assert_almost_equal(this_boid.velocity[0],1.0+ 10*(middle_attraction/boid_num))
@@ -56,9 +56,9 @@ def test_Boid_flyTowards():
 
 
 def test_Boid_flyAwayFrom():
-    this_boid = Boid(5.0,0.0,1.0,1.0)
-    that_boid = Boid(0.0,0.0,1.0,1.0)
-    another_boid = Boid(15.0,0.0,1.0,1.0)
+    this_boid = Boid(5.0,0.0,1.0,1.0,boid_num)
+    that_boid = Boid(0.0,0.0,1.0,1.0,boid_num)
+    another_boid = Boid(15.0,0.0,1.0,1.0,boid_num)
     this_boid.flyAwayFrom(that_boid)
     another_boid.flyAwayFrom(that_boid)
 
@@ -70,9 +70,9 @@ def test_Boid_flyAwayFrom():
     assert_equal(this_boid.position[1],0.0)
 
 def test_Boid_copy():
-    this_boid = Boid(10.0,0.0,1.0,11.0)
-    that_boid = Boid(0.0,0.0,11.0,1.0)
-    another_boid = Boid(200.0,0.0,1.0,1.0)
+    this_boid = Boid(10.0,0.0,1.0,11.0,boid_num)
+    that_boid = Boid(0.0,0.0,11.0,1.0,boid_num)
+    another_boid = Boid(200.0,0.0,1.0,1.0,boid_num)
     this_boid.copy(that_boid)
     another_boid.copy(that_boid)
 
@@ -84,7 +84,7 @@ def test_Boid_copy():
     assert_equal(this_boid.position[1],0.0)
 
 def test_Boid_move():
-    boid = Boid(1.0,1.0,2.0,3.0)
+    boid = Boid(1.0,1.0,2.0,3.0,boid_num)
     boid.move()
 
     assert_almost_equal(boid.position[0],3.0)

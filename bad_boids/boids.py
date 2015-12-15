@@ -10,15 +10,15 @@ middle_attraction = 0.01
 avoidance_radius = 10.0
 copycat_radius = 100.0
 copycat_influence = 0.125
-boid_num = 50
 
 class Boid(object):
-	def __init__(self,x,y,vx,vy):
+	def __init__(self,x,y,vx,vy,swarmSize):
 		self.position = np.array([x,y])
 		self.velocity = np.array([vx,vy])
+		self.swarmSize = swarmSize
 
 	def flyTowards(self,other):
-		self.velocity += (other.position - self.position)*middle_attraction/boid_num
+		self.velocity += (other.position - self.position)*middle_attraction/self.swarmSize
 
 	def flyAwayFrom(self,other):
 		if np.linalg.norm(other.position - self.position) < avoidance_radius:
@@ -26,7 +26,7 @@ class Boid(object):
 
 	def copy(self,other):
 		if np.linalg.norm(other.position - self.position) < copycat_radius:
-			self.velocity += (other.velocity - self.velocity)*copycat_influence/boid_num
+			self.velocity += (other.velocity - self.velocity)*copycat_influence/self.swarmSize
 
 	def move(self):
 		self.position += self.velocity
@@ -37,16 +37,16 @@ class Swarm(object):
 		self.members = []
 		self.size = 0
 
-	def hatch(self,number):
+	def hatch(self,swarmSize):
 		self.members = [Boid(random.uniform(-450,50.0),
 							 random.uniform(300.0,600.0),
 							 random.uniform(0,10.0),
-							 random.uniform(-20.0,20.0)) for x in range(number)]
-		self.size = number
+							 random.uniform(-20.0,20.0),swarmSize) for x in range(swarmSize)]
+		self.size = swarmSize
 
-	def hatch_test(self,x,y,vx,vy,number):
-		self.members = [Boid(x[i],y[i],vx[i],vy[i]) for i in range(number)]
-		self.size = number
+	def hatch_test(self,x,y,vx,vy,swarmSize):
+		self.members = [Boid(x[i],y[i],vx[i],vy[i],swarmSize) for i in range(swarmSize)]
+		self.size = swarmSize
 
 	def update(self):
 		for this in self.members:
