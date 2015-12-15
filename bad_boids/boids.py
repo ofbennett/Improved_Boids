@@ -9,8 +9,8 @@ import random
 import numpy as np
 
 middle_attraction = 0.01
-avoidance_radius = 10
-copycat_radius = 100
+avoidance_radius = 10.0
+copycat_radius = 100.0
 copycat_influence = 0.125
 boid_num = 50
 
@@ -61,6 +61,8 @@ class Swarm(object):
 				this.flyTowards(that)
 				this.flyAway(that)
 				this.copy(that)
+
+		for this in self.members:
 			this.move()
 
 	def boidPositions(self):
