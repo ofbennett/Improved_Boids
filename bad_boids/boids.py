@@ -28,7 +28,7 @@ class Boid(object):
 	def flyTowards(self,other):
 		self.velocity += (other.position - self.position)*middle_attraction/boid_num
 
-	def flyAway(self,other):
+	def flyAwayFrom(self,other):
 		if np.linalg.norm(other.position - self.position) < avoidance_radius:
 			self.velocity += (self.position - other.position)
 
@@ -58,9 +58,14 @@ class Swarm(object):
 	def update(self):
 		for this in self.members:
 			for that in self.members:
-				this.flyTowards(that)
-				this.flyAway(that)
-				this.copy(that)
+				if this is not that:
+					this.flyTowards(that)
+					this.flyAwayFrom(that)
+
+		for this in self.members:
+			for that in self.members:
+				if this is not that:
+					this.copy(that)
 
 		for this in self.members:
 			this.move()
