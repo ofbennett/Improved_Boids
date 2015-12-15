@@ -11,8 +11,9 @@ def process():
     parser.add_argument('--config_file','-f',default = 'config_most_recent.yml', help = 'The name of the config file which is generated containing all the parameters passed to the program. Default is config_most_recent.yml')
     arguments = parser.parse_args()
 
-    # if [arguments.size,arguments.middle_attraction,arguments.avoidance_radius,arguments.copycat_radius,arguments.copycat_influence]<0:
-    #     raise ValueError('Arguments cannot be negative.')
+    if (arguments.size <0 or arguments.middle_attraction <0 or arguments.avoidance_radius <0
+    or arguments.copycat_radius <0 or arguments.copycat_influence <0):
+        raise ValueError('Arguments cannot be negative.')
 
 
 
