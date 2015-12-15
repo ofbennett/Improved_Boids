@@ -57,7 +57,7 @@ class Swarm(object):
 				this.flyTowards(that)
 				this.flyAway(that)
 				this.copy(that)
-				this.move()
+			this.move()
 
 	def boidPositions(self):
 		xs = [self.members[x].position[0] for x in range(self.size)]
@@ -66,6 +66,7 @@ class Swarm(object):
 
 swarm = Swarm()
 swarm.hatch(boid_num)
+boid_xs,boid_ys = swarm.boidPositions()
 
 def update_boids(boids):
 	xs,ys,xvs,yvs=boids
@@ -96,11 +97,16 @@ def update_boids(boids):
 
 figure=plt.figure()
 axes=plt.axes(xlim=(-500,1500), ylim=(-500,1500))
-scatter=axes.scatter(boids[0],boids[1])
+# scatter=axes.scatter(boids[0],boids[1])
+scatter=axes.scatter(boid_xs,boid_ys)
 
 def animate(frame):
-   	update_boids(boids)
-   	scatter.set_offsets(zip(boids[0],boids[1]))
+	swarm.update()
+	xs,ys = swarm.boidPositions()
+	scatter.set_offsets(zip(xs,ys))
+
+ #   	update_boids(boids)
+ #   	scatter.set_offsets(zip(boids[0],boids[1]))
 
 
 anim = animation.FuncAnimation(figure, animate,
