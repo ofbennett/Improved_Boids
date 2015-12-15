@@ -3,8 +3,6 @@ A deliberately bad implementation of [Boids](http://dl.acm.org/citation.cfm?doid
 for use as an exercise on refactoring.
 """
 
-from matplotlib import pyplot as plt
-from matplotlib import animation
 import random
 import numpy as np
 
@@ -32,6 +30,7 @@ class Boid(object):
 
 	def move(self):
 		self.position += self.velocity
+
 
 class Swarm(object):
 	def __init__(self):
@@ -73,22 +72,3 @@ class Swarm(object):
 		vxs = [self.members[x].velocity[0] for x in range(self.size)]
 		vys = [self.members[x].velocity[1] for x in range(self.size)]
 		return [vxs,vys]
-
-swarm = Swarm()
-swarm.hatch(boid_num)
-boid_xs,boid_ys = swarm.boidPositions()
-
-figure=plt.figure()
-axes=plt.axes(xlim=(-500,1500), ylim=(-500,1500))
-scatter=axes.scatter(boid_xs,boid_ys)
-
-def animate(frame):
-	swarm.update()
-	xs,ys = swarm.boidPositions()
-	scatter.set_offsets(zip(xs,ys))
-
-anim = animation.FuncAnimation(figure, animate,
-                               frames=50, interval=50)
-
-if __name__ == "__main__":
-    plt.show()
