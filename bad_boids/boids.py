@@ -51,6 +51,10 @@ class Swarm(object):
 							 random.uniform(-20.0,20.0)) for x in range(number)]
 		self.size = number
 
+	def hatch_test(self,x,y,vx,vy,number):
+		self.members = [Boid(x[i],y[i],vx[i],vy[i]) for i in range(number)]
+		self.size = number
+
 	def update(self):
 		for this in self.members:
 			for that in self.members:
@@ -63,6 +67,11 @@ class Swarm(object):
 		xs = [self.members[x].position[0] for x in range(self.size)]
 		ys = [self.members[x].position[1] for x in range(self.size)]
 		return [xs,ys]
+
+	def boidVelocities(self):
+		vxs = [self.members[x].velocity[0] for x in range(self.size)]
+		vys = [self.members[x].velocity[1] for x in range(self.size)]
+		return [vxs,vys]
 
 swarm = Swarm()
 swarm.hatch(boid_num)
