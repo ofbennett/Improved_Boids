@@ -3,9 +3,13 @@ from matplotlib import pyplot as plt
 from matplotlib import animation
 
 boid_num = 50
+behaviour = {'middle_attraction' : 0.01,
+             'avoidance_radius' : 10.0,
+             'copycat_radius' : 100.0,
+             'copycat_influence' : 0.125}
 
 swarm = Swarm()
-swarm.hatch(boid_num)
+swarm.hatch(boid_num,behaviour)
 boid_xs,boid_ys = swarm.boidPositions()
 
 figure=plt.figure()

@@ -6,27 +6,26 @@ for use as an exercise on refactoring.
 import random
 import numpy as np
 
-middle_attraction = 0.01
-avoidance_radius = 10.0
-copycat_radius = 100.0
-copycat_influence = 0.125
-
 class Boid(object):
-	def __init__(self,x,y,vx,vy,swarmSize):
+	def __init__(self,x,y,vx,vy,swarmSize,behaviour):
 		self.position = np.array([x,y])
 		self.velocity = np.array([vx,vy])
 		self.swarmSize = swarmSize
+		self.middle_attraction = behaviour['middle_attraction']
+		self.avoidance_radius = behaviour['avoidance_radius']
+		self.copycat_radius = behaviour['copycat_radius']
+		self.copycat_influence = behaviour['copycat_influence']
 
 	def flyTowards(self,other):
-		self.velocity += (other.position - self.position)*middle_attraction/self.swarmSize
+		self.velocity += (other.position - self.position)*self.middle_attraction/self.swarmSize
 
 	def flyAwayFrom(self,other):
-		if np.linalg.norm(other.position - self.position) < avoidance_radius:
+		if np.linalg.norm(other.position - self.position) < self.avoidance_radius:
 			self.velocity += (self.position - other.position)
 
 	def copy(self,other):
-		if np.linalg.norm(other.position - self.position) < copycat_radius:
-			self.velocity += (other.velocity - self.velocity)*copycat_influence/self.swarmSize
+		if np.linalg.norm(other.position - self.position) < self.copycat_radius:
+			self.velocity += (other.velocity - self.velocity)*self.copycat_influence/self.swarmSize
 
 	def move(self):
 		self.position += self.velocity
@@ -37,15 +36,15 @@ class Swarm(object):
 		self.members = []
 		self.size = 0
 
-	def hatch(self,swarmSize):
+	def hatch(self,swarmSize,behaviour):
 		self.members = [Boid(random.uniform(-450,50.0),
 							 random.uniform(300.0,600.0),
 							 random.uniform(0,10.0),
-							 random.uniform(-20.0,20.0),swarmSize) for x in range(swarmSize)]
+							 random.uniform(-20.0,20.0),swarmSize,behaviour) for x in range(swarmSize)]
 		self.size = swarmSize
 
-	def hatch_test(self,x,y,vx,vy,swarmSize):
-		self.members = [Boid(x[i],y[i],vx[i],vy[i],swarmSize) for i in range(swarmSize)]
+	def hatch_test(self,x,y,vx,vy,swarmSize,behaviour):
+		self.members = [Boid(x[i],y[i],vx[i],vy[i],swarmSize,behaviour) for i in range(swarmSize)]
 		self.size = swarmSize
 
 	def update(self):
