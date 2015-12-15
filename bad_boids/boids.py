@@ -8,8 +8,6 @@ from matplotlib import animation
 import random
 import numpy as np
 
-# Deliberately terrible code for teaching purposes
-
 middle_attraction = 0.01
 avoidance_radius = 10
 copycat_radius = 100
@@ -21,8 +19,6 @@ boids_y=[random.uniform(300.0,600.0) for x in range(boid_num)]
 boid_x_velocities=[random.uniform(0,10.0) for x in range(boid_num)]
 boid_y_velocities=[random.uniform(-20.0,20.0) for x in range(boid_num)]
 boids=(boids_x,boids_y,boid_x_velocities,boid_y_velocities)
-
-boids
 
 class Boid(object):
 	def __init__(self,x,y,vx,vy):
@@ -46,12 +42,14 @@ class Boid(object):
 class Swarm(object):
 	def __init__(self):
 		self.members = []
+		self.size = 0
 
 	def hatch(self,number):
 		self.members = [Boid(random.uniform(-450,50.0),
 							 random.uniform(300.0,600.0),
 							 random.uniform(0,10.0),
 							 random.uniform(-20.0,20.0)) for x in range(number)]
+		self.size = number
 
 	def update(self):
 		for this in self.members:
@@ -60,6 +58,14 @@ class Swarm(object):
 				this.flyAway(that)
 				this.copy(that)
 				this.move()
+
+	def boidPositions(self):
+		xs = [self.members[x].position[0] for x in range(self.size)]
+		ys = [self.members[x].position[1] for x in range(self.size)]
+		return [xs,ys]
+
+swarm = Swarm()
+swarm.hatch(boid_num)
 
 def update_boids(boids):
 	xs,ys,xvs,yvs=boids
@@ -93,8 +99,8 @@ axes=plt.axes(xlim=(-500,1500), ylim=(-500,1500))
 scatter=axes.scatter(boids[0],boids[1])
 
 def animate(frame):
-   update_boids(boids)
-   scatter.set_offsets(zip(boids[0],boids[1]))
+   	update_boids(boids)
+   	scatter.set_offsets(zip(boids[0],boids[1]))
 
 
 anim = animation.FuncAnimation(figure, animate,
