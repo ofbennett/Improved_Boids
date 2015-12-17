@@ -1,3 +1,7 @@
+"""
+Test file containing unit tests of each class and method used in this package along with a regression test of the entire package.
+"""
+
 from boids.boid_classes import Boid, Swarm
 from nose.tools import assert_almost_equal, assert_equal, assert_less, assert_greater
 import os

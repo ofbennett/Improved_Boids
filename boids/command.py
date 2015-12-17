@@ -1,3 +1,7 @@
+"""
+Command-line arguement parser function defined below
+"""
+
 from argparse import ArgumentParser
 from animate_boids import animate_boids_func
 import yaml

@@ -1,3 +1,7 @@
+"""
+Definition of the function which creates an animation of the simulated boid movements.
+"""
+
 from boid_classes import Swarm
 from matplotlib import pyplot as plt
 from matplotlib import animation
