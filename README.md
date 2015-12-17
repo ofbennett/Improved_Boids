@@ -11,9 +11,9 @@ python setup.py install
 
 This package generates an animation of the simulated movement of 'boids'. The number of boids in the simulated group along with some behavioural characteristics of the boids can be either user defined or assigned to default settings.
 
-The command line interface is shown below. The entry point script boids.py either needs to be in the current directory or in the systems's search path to be run!
+The command line interface is shown below.
 
-usage: boids.py [-h] [--size SIZE] [--middle_attraction MIDDLE_ATTRACTION]
+usage: runBoids.py [-h] [--size SIZE] [--middle_attraction MIDDLE_ATTRACTION]
                   [--avoidance_radius AVOIDANCE_RADIUS]
                   [--copycat_radius COPYCAT_RADIUS]
                   [--copycat_influence COPYCAT_INFLUENCE]
