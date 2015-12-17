@@ -11,7 +11,7 @@ def process():
     parser.add_argument('--copycat_radius','-cr',default = 100.0, help = "The distance where two boids start trying to match eachother's velocity. Default is 100.",type = float)
     parser.add_argument('--copycat_influence','-ci',default = 0.125, help = 'The extent to which boids alter their velocity to match the velocities of the boids near them. Default is 0.125.',type = float)
     parser.add_argument('--config_file','-f',default = 'config_most_recent.yml', help = 'The name of the config file which is generated containing all the parameters passed to the program. Default is config_most_recent.yml')
-    parser.add_argument('--existing_file','-e', action = 'store_true', help = 'Flag to include if the progam is to be run by loading aruments from an existing config file in the config folder (the name of which must be specified with the --config_file [-f] argument.)')
+    parser.add_argument('--existing_file','-e', action = 'store_true', help = 'Flag to include if the progam is to be run by loading arguments from an existing config file in the config folder. The name of this file must be specified with the [--config_file] [-f] argument.)')
     arguments = parser.parse_args()
 
     if (arguments.size <0 or arguments.middle_attraction <0 or arguments.avoidance_radius <0
