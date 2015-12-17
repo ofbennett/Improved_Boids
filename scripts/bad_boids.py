@@ -1,3 +1,3 @@
-from bad_boids.animate_boids import process
+from bad_boids.command import process
 
 process()

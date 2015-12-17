@@ -1,0 +1,2 @@
+{avoidance_radius: 10.0, boid_num: 10, copycat_influence: 0.3, copycat_radius: 100.0,
+  middle_attraction: 0.01}
