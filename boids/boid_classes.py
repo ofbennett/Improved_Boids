@@ -5,6 +5,7 @@ Implementations of the Boid and Swarm classes.
 import random
 import numpy as np
 
+#Each instance of the Boid class represents a particular boid in the group
 class Boid(object):
 	def __init__(self,x,y,vx,vy,swarmSize,behaviour):
 		self.position = np.array([x,y])
@@ -29,7 +30,8 @@ class Boid(object):
 	def move(self):
 		self.position += self.velocity
 
-
+#An instance of the Swarm class represents a group of Boid objects all 
+#interacting with each other.
 class Swarm(object):
 	def __init__(self):
 		self.members = []

@@ -1,5 +1,6 @@
 """
-Code orginally used to create the fixture file 'fixture.yml' for testing (using a different version of the code)
+Code orginally used to create the fixture file 'fixture.yml' for testing 
+(using a different version of the code)
 """
 
 import yaml

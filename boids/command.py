@@ -30,7 +30,7 @@ def process():
             raise ValueError('Arguments cannot be negative.')
 
         if config_data['boid_num'] > 201:
-            raise ValueError('Too many boids! Need to choose swarm size less than 200.')
+            raise ValueError('Too many boids! Need to choose a swarm size less than 200.')
 
     else:
         if (arguments.size <0 or arguments.middle_attraction <0 or arguments.avoidance_radius <0
@@ -38,7 +38,7 @@ def process():
             raise ValueError('Arguments cannot be negative.')
 
         if arguments.size > 201:
-            raise ValueError('Too many boids! Need to choose swarm size less than 200.')
+            raise ValueError('Too many boids! Need to choose a swarm size less than 200.')
 
         config_data = {'boid_num':arguments.size,
                        'middle_attraction':arguments.middle_attraction,

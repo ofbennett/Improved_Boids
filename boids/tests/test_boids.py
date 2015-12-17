@@ -1,5 +1,6 @@
 """
-Test file containing unit tests of each class and method used in this package along with a regression test of the entire package.
+Test file containing unit tests of each class and method used in this
+package along with a regression test of the entire package.
 """
 
 from boids.boid_classes import Boid, Swarm
@@ -7,6 +8,7 @@ from nose.tools import assert_almost_equal, assert_equal, assert_less, assert_gr
 import os
 import yaml
 
+#Load standard swarm behaviour information to contruct Boid and Swarm instances below
 behaviour=yaml.load(open(os.path.join(os.path.dirname(__file__),'fixtures','standard_swarm.yml')))
 
 middle_attraction = behaviour['middle_attraction']
@@ -15,6 +17,7 @@ copycat_radius = behaviour['copycat_radius']
 copycat_influence = behaviour['copycat_influence']
 boid_num = behaviour['boid_num']
 
+#Regression test for this improved object orientated version of the boids code
 def test_OO_boids_regression():
     regression_data=yaml.load(open(os.path.join(os.path.dirname(__file__),'fixtures','fixture.yml')))
     boid_data=regression_data["before"]
