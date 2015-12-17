@@ -20,7 +20,7 @@ def process():
 
     if arguments.existing_file:
         if arguments.config_file == 'config_most_recent.yml':
-            raise Exception('Must supply a config file name if --existing_file flag used.')
+            raise Exception('Must supply a config file name if [--existing_file][-e] flag used.')
 
     else:
         config_data = {'boid_num':arguments.size,
