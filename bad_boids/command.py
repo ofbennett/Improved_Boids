@@ -11,24 +11,28 @@ def process():
     parser.add_argument('--copycat_radius','-cr',default = 100.0, help = "The distance where two boids start trying to match eachother's velocity. Default is 100.",type = float)
     parser.add_argument('--copycat_influence','-ci',default = 0.125, help = 'The extent to which boids alter their velocity to match the velocities of the boids near them. Default is 0.125.',type = float)
     parser.add_argument('--config_file','-f',default = 'config_most_recent.yml', help = 'The name of the config file which is generated containing all the parameters passed to the program. Default is config_most_recent.yml')
+    parser.add_argument('--existing_file','-e', action = 'store_true', help = 'Flag to include if the progam is to be run by loading aruments from an existing config file in the config folder (the name of which must be specified with the --config_file [-f] argument.)')
     arguments = parser.parse_args()
-
-    #Need to Add flag for using existing config file
 
     if (arguments.size <0 or arguments.middle_attraction <0 or arguments.avoidance_radius <0
     or arguments.copycat_radius <0 or arguments.copycat_influence <0):
         raise ValueError('Arguments cannot be negative.')
 
-    config_data = {'boid_num':arguments.size,
-                   'middle_attraction':arguments.middle_attraction,
-                   'avoidance_radius':arguments.avoidance_radius,
-                   'copycat_radius':arguments.copycat_radius,
-                   'copycat_influence':arguments.copycat_influence}
+    if arguments.existing_file:
+        if arguments.config_file == 'config_most_recent.yml':
+            raise Exception('Must supply a config file name if --existing_file flag used.')
 
-    config_yaml_data = yaml.dump(config_data)
+    else:
+        config_data = {'boid_num':arguments.size,
+                       'middle_attraction':arguments.middle_attraction,
+                       'avoidance_radius':arguments.avoidance_radius,
+                       'copycat_radius':arguments.copycat_radius,
+                       'copycat_influence':arguments.copycat_influence}
 
-    with open(os.path.join(os.path.dirname(__file__),'config',arguments.config_file),'w') as cfile:
-        cfile.write(config_yaml_data)
+        config_yaml_data = yaml.dump(config_data)
+
+        with open(os.path.join(os.path.dirname(__file__),'config',arguments.config_file),'w') as cfile:
+            cfile.write(config_yaml_data)
 
     animate_boids_func(arguments.config_file)
 
