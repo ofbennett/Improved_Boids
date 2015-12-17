@@ -19,38 +19,46 @@ usage: boids.py [-h] [--size SIZE] [--middle_attraction MIDDLE_ATTRACTION]
                   [--copycat_influence COPYCAT_INFLUENCE]
                   [--config_file CONFIG_FILE] [--existing_file]
 
-A program which displays an animation of a swarm of boids with user defined
-behaviour and size
-
 optional arguments:
 
-  -h, --help            show this help message and exit
+  -h, --help            
 
-  --size SIZE, -s SIZE  Number of boids in the swarm. Default is 50.
+                        Show help message and exit
+
+  --size SIZE, -s SIZE  
+
+                        Number of boids in the swarm. Default is 50.
 
   --middle_attraction MIDDLE_ATTRACTION, -m MIDDLE_ATTRACTION
+
                         The attraction that a boid feels to stay near the
                         centre of the swarm. Default value is 0.01
 
   --avoidance_radius AVOIDANCE_RADIUS, -a AVOIDANCE_RADIUS
+
                         The distance where two boids start trying to avoid
                         getting closer. Default is 10
 
   --copycat_radius COPYCAT_RADIUS, -cr COPYCAT_RADIUS
+
                         The distance where two boids start trying to match
                         eachother's velocity. Default is 100.
 
   --copycat_influence COPYCAT_INFLUENCE, -ci COPYCAT_INFLUENCE
+
                         The extent to which boids alter their velocity to
                         match the velocities of the boids near them. Default
                         is 0.125.
 
   --config_file CONFIG_FILE, -f CONFIG_FILE
+
                         The name of the config file which is generated
                         containing all the parameters passed to the program.
                         Default is config_most_recent.yml
-                        
-  --existing_file, -e   Flag to include if the progam is to be run by loading
+
+  --existing_file, -e   
+
+                        Flag to include if the progam is to be run by loading
                         arguments from an existing config file in the config
                         folder. The name of this file must be specified with
                         the [--config_file] [-f] argument.)
