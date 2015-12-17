@@ -27,7 +27,7 @@ optional arguments:
 
   --size SIZE, -s SIZE  
 
-                        Number of boids in the swarm. Default is 50.
+                        Number of boids in the swarm. Default is 50. Max is 200.
 
   --middle_attraction MIDDLE_ATTRACTION, -m MIDDLE_ATTRACTION
 
