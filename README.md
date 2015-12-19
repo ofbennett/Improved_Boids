@@ -53,12 +53,15 @@ optional arguments:
   --config_file CONFIG_FILE, -f CONFIG_FILE
 
                         The name of the config file which is generated
-                        containing all the parameters passed to the program.
-                        Default is config_most_recent.yml
+                        containing all the parameters passed to the program on
+                        the command line if no config file is supplied. Default is config_most_recent.yml
+                        Alternatively, if the [--existing_file][-e] flag is used
+                        this argument should contain the name of the desired config
+                        file.
 
   --existing_file, -e   
 
-                        Flag to include if the progam is to be run by loading
+                        Flag to include if the program is to be run by loading
                         arguments from an existing config file in the config
                         folder. The name of this file must be specified with
-                        the [--config_file] [-f] argument.)
+                        the [--config_file] [-f] argument.
