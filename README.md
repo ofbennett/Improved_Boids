@@ -13,7 +13,7 @@ This package generates an animation of the simulated movement of 'boids'. The nu
 
 The command line interface is shown below.
 
-usage: runBoids.py [-h] [--size SIZE] [--middle_attraction MIDDLE_ATTRACTION]
+usage: runBoids [-h] [--size SIZE] [--middle_attraction MIDDLE_ATTRACTION]
                   [--avoidance_radius AVOIDANCE_RADIUS]
                   [--copycat_radius COPYCAT_RADIUS]
                   [--copycat_influence COPYCAT_INFLUENCE]
